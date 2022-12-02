@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Run Test') {
             steps {
-                bat 'docker-compose up search-module book-flight-module'
+                bat 'docker-compose up search-module-chrome search-module-firefox book-flight-module-chrome book-flight-module-firefox'
             }
         }
         stage('Stop Grid') {
