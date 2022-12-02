@@ -1,33 +1,21 @@
 #!/usr/bin/env groovy
 pipeline {
-    // master executor should be set to 0
     agent any
-    options {
-        skipStagesAfterUnstable()
-    }
     stages {
-        stage('Build Maven Jar') {
+        stage('Start Grid') {
             steps {
-                bat 'mvn clean install -DskipTests'
+                bat 'docker-compose up -d hub chrome firefox'
             }
         }
-        stage('Build Docker Image') {
+        stage('Run Test') {
             steps {
-                bat 'docker build -t=madcard31/selenium-docker .'
+                bat 'docker-compose up search-module book-flight-module'
             }
         }
-        stage('Push Docker Image to Docker Hub') {
+        stage('Stop Grid') {
             steps {
-                withCredentials([string(credentialsId: 'dockerhub_pwd', variable: 'DOCKER_PWD')]) {
-                    bat 'docker login -u madcard31 -p %DOCKER_PWD%'
-                }
-                bat 'docker push madcard31/selenium-docker:latest'
+                bat 'docker-compose down'
             }
         }
     } // stages
-    post{
-        always {
-            bat 'docker logout'
-        }
-    }
 } // pipeline
