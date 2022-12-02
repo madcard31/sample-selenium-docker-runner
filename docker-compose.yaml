@@ -2,8 +2,6 @@ version: "3"
 services:
   hub:
     image: selenium/hub:3.14
-    ports:
-      - "4444:4444"
   chrome:
     image: selenium/node-chrome:3.14
     depends_on:
@@ -31,7 +29,7 @@ services:
       - HUB_HOST=hub
       - MODULE=search-module.xml
     volumes:
-      - ./search-result:/usr/share/udemy/test-output
+      - ./output/search-result:/usr/share/udemy/test-output
   search-module-firefox:
     image: madcard31/selenium-docker
     depends_on:
@@ -42,7 +40,7 @@ services:
       - HUB_HOST=hub
       - MODULE=search-module.xml
     volumes:
-      - ./search-result:/usr/share/udemy/test-output
+      - ./output/search-result:/usr/share/udemy/test-output
   book-flight-module-chrome:
     image: madcard31/selenium-docker
     depends_on:
@@ -53,7 +51,7 @@ services:
       - HUB_HOST=hub
       - MODULE=book-flight-module.xml
     volumes:
-      - ./book-flight-result:/usr/share/udemy/test-output
+      - ./output/book-flight-result:/usr/share/udemy/test-output
   book-flight-module-firefox:
     image: madcard31/selenium-docker
     depends_on:
@@ -64,4 +62,4 @@ services:
       - HUB_HOST=hub
       - MODULE=book-flight-module.xml
     volumes:
-      - ./book-flight-result:/usr/share/udemy/test-output
+      - ./output/book-flight-result:/usr/share/udemy/test-output

@@ -12,10 +12,11 @@ pipeline {
                 bat 'docker-compose up search-module-chrome search-module-firefox book-flight-module-chrome book-flight-module-firefox'
             }
         }
-        stage('Stop Grid') {
-            steps {
-                bat 'docker-compose down'
-            }
-        }
     } // stages
+    post {
+        always {
+            archiveArtifacts artifacts: 'output/**'
+            bat 'docker-compose down'
+        }
+    } // post
 } // pipeline
