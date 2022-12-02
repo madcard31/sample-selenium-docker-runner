@@ -29,7 +29,7 @@ services:
       - HUB_HOST=hub
       - MODULE=search-module.xml
     volumes:
-      - ./output/search-result:/usr/share/udemy/test-output
+      - ./output/search-chrome-result:/usr/share/udemy/test-output
   search-module-firefox:
     image: madcard31/selenium-docker
     depends_on:
@@ -40,7 +40,7 @@ services:
       - HUB_HOST=hub
       - MODULE=search-module.xml
     volumes:
-      - ./output/search-result:/usr/share/udemy/test-output
+      - ./output/search-firefox-result:/usr/share/udemy/test-output
   book-flight-module-chrome:
     image: madcard31/selenium-docker
     depends_on:
@@ -51,7 +51,7 @@ services:
       - HUB_HOST=hub
       - MODULE=book-flight-module.xml
     volumes:
-      - ./output/book-flight-result:/usr/share/udemy/test-output
+      - ./output/book-flight-chrome-result:/usr/share/udemy/test-output
   book-flight-module-firefox:
     image: madcard31/selenium-docker
     depends_on:
@@ -62,4 +62,4 @@ services:
       - HUB_HOST=hub
       - MODULE=book-flight-module.xml
     volumes:
-      - ./output/book-flight-result:/usr/share/udemy/test-output
+      - ./output/book-flight-firefox-result:/usr/share/udemy/test-output
