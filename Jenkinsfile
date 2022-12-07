@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Pull Latest Image') {
             steps {
-                bat 'docker pull madcard31/selenium-docker'
+                bat 'docker pull docker-image-name'
             }
         }
         stage('Start Grid') {
@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Run Test') {
             steps {
-                bat 'docker-compose up search-module-chrome search-module-firefox book-flight-module-chrome book-flight-module-firefox'
+                bat 'docker-compose up sample-module-chrome sample-module-firefox'
             }
         }
     } // stages
